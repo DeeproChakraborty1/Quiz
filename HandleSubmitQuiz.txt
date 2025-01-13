@@ -1,0 +1,22 @@
+handleSubmitQuiz()
+
+
+const handleSubmitQuiz = () => {
+  // Get the user's name from the quiz settings in localStorage
+  const name = JSON.parse(localStorage.getItem('quizSettings')).name;
+  
+  // Get the current leaderboard from localStorage or initialize an empty array if it doesn't exist
+  const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+  
+  // Add the new user's score to the leaderboard
+  leaderboard.push({ name, score });
+  
+  // Sort the leaderboard in descending order based on the score
+  leaderboard.sort((a, b) => b.score - a.score);
+  
+  // Save the updated leaderboard back to localStorage
+  localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+  
+  // Show the result modal
+  setShowResult(true);
+};
